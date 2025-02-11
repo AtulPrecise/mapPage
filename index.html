@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps Multiple Markers</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaNy1rcsCKtaC9mUgfgdHOpW5DrWOpBOQ&callback=initMap"
+        async defer></script>
+        <style>
+            #map {
+                height: 95vh !important;
+                width: 100%;
+            }
+    
+            ul {
+                display: flex;
+                flex-wrap: wrap;
+                padding-left: 0;
+                margin-bottom: 0;
+                float: right;
+                right: 0;
+                position: absolute;
+            }
+    
+            .d-flex {
+                display: flex;
+                flex-wrap: wrap;
+            }
+    
+            ul li {
+                text-align: -webkit-match-parent;
+                unicode-bidi: isolate;
+                flex: 0 0 auto;
+                /* width: 20%; */
+                list-style: none;
+            }
+    
+            ul li a {
+                text-decoration: none;
+            }
+    
+            .btn {
+                border: 1px solid #000;
+                padding: 0.475rem 1.375rem;
+                margin: 10px;
+                border-radius: 5px;
+                color: #000;
+            }
+    
+            .active {
+                background: #198754;
+                color: #fff;
+                border-color: #198754;
+            }
+        </style>
+    <script>
+
+        function initMap() {
+            // Define the map and center location
+            var map = new google.maps.Map(document.getElementById("map"), {});
+
+
+            // Define multiple marker locations
+            var locations = [
+                { lat: 29.5747044, lng: 74.3365658, title: "H8FP+VMR, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 30-09-2024 19:24:50", txnReqID: "2071369364", rationCard: "6780100026" , aadhaarCard: "xxxx-xxxx-8526", owner: "TEKACHAND" , billNo: "18015240930192400" },
+{ lat: 29.5780773, lng: 74.3461231, title: "NAAGAR KUNJ Makka musjid Gali no. 4/7, Ward Number 32, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 30-09-2024 10:10:55", txnReqID: "2071076015", rationCard: "6829100008" , aadhaarCard: "xxxx-xxxx-8178", owner: "NIJAMADINA" , billNo: "18015240930101000" },
+{ lat: 29.5716978, lng: 74.3508573, title: "H9C2+WFQ, Sun City, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 29-09-2024 20:34:39", txnReqID: "2071010381", rationCard: "105403000093" , aadhaarCard: "xxxx-xxxx-5743", owner: "RADHUVIR" , billNo: "18015240929203400" },
+{ lat: 29.5718166, lng: 74.3509978, title: "H9C2+WFQ, Sun City, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 29-09-2024 20:25:10", txnReqID: "2071009435", rationCard: "105403001305" , aadhaarCard: "xxxx-xxxx-4032", owner: "MAYA" , billNo: "18015240929202500" },
+{ lat: 29.5751398, lng: 74.330905, title: "H8FJ+XGQ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 29-09-2024 20:14:04", txnReqID: "2071008116", rationCard: "105402200888" , aadhaarCard: "xxxx-xxxx-0166", owner: "SHRAVAN" , billNo: "18015240929201400" },
+{ lat: 29.5757326, lng: 74.3303225, title: "H8GJ+86G, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 29-09-2024 19:57:16", txnReqID: "2071005632", rationCard: "105402800486" , aadhaarCard: "xxxx-xxxx-9878", owner: "RAJU DEVI" , billNo: "18015240929195700" },
+{ lat: 29.5813043, lng: 74.3383889, title: "Unnamed Road, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 29-09-2024 19:44:04", txnReqID: "2071003366", rationCard: "105403100269" , aadhaarCard: "xxxx-xxxx-1194", owner: "RADHESHYAM GIRI" , billNo: "18015240929194400" },
+{ lat: 29.5801408, lng: 74.3490549, title: "H8JX+2FC, Bhadrakali Temple Rd, Indira Colony, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 27-09-2024 19:04:15", txnReqID: "2070462404", rationCard: "200004511900" , aadhaarCard: "xxxx-xxxx-9581", owner: "RENU" , billNo: "18015240927190400" },
+{ lat: 29.5781154, lng: 74.346236, title: "NAAGAR KUNJ Makka musjid Gali no. 4/7, Ward Number 32, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 27-09-2024 14:07:15", txnReqID: "2070369674", rationCard: "105402800918" , aadhaarCard: "xxxx-xxxx-1068", owner: "NARESH KUMARA" , billNo: "18015240927140700" },
+{ lat: 29.5744928, lng: 74.3365962, title: "Genral Market, Shiv Petrol Pump Ke Pichhe, Tibbi Rd, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 26-09-2024 19:31:27", txnReqID: "2070233233", rationCard: "105403000800" , aadhaarCard: "xxxx-xxxx-5127", owner: "NAVAB KHAN" , billNo: "18015240926193100" },
+{ lat: 29.5744399, lng: 74.3363893, title: "H8FP+QJJ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 26-09-2024 18:57:44", txnReqID: "2070229999", rationCard: "105403000265" , aadhaarCard: "xxxx-xxxx-4118", owner: "MADAN LAL" , billNo: "18015240926185700" },
+{ lat: 29.5753013, lng: 74.331109, title: "H8FJ+XGQ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 25-09-2024 19:33:50", txnReqID: "2069994483", rationCard: "105402200520" , aadhaarCard: "xxxx-xxxx-4853", owner: "ARATI" , billNo: "18015240925193300" },
+{ lat: 29.5753024, lng: 74.3311412, title: "H8FJ+XGQ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 25-09-2024 19:28:32", txnReqID: "2069994075", rationCard: "105402200502" , aadhaarCard: "xxxx-xxxx-4177", owner: "MANJU DEVI" , billNo: "18015240925192800" }
+            ];
+            var infowindow = new google.maps.InfoWindow();
+            var bounds = new google.maps.LatLngBounds();
+            // Loop through locations and add markers
+            locations.forEach(function (location) {
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: map,
+                    title: location.title
+                });
+                bounds.extend(marker.position);
+                marker.addListener("click", function () {
+                    var content = "<b>" + location.title + "</b><br>" + location.dateTime + "</b><br> Txn Id -- " + location.txnReqID + "</b><br>Ration Card -- " + location.rationCard+ "</b><br>Aadhaar Card -- " + location.aadhaarCard+ "</b><br>Owner Name -- " + location.owner+ "</b><br>Bill No. -- " + location.billNo;
+
+                    infowindow.setContent(content);
+
+                    infowindow.open(map, marker);
+                });
+            });
+            map.fitBounds(bounds);
+        }
+    </script>
+    
+</head>
+
+<body>
+    <div class="d-flex">
+    <h2>September 2024 locations of FPS 18015</h2>
+    <ul>
+        <li><a href="./index.html" class="btn active">SEPTEMBER-2024</a></li>
+        <li><a href="./Dec.html" class="btn">DECEMBER-2024</a></li>
+        <li><a href="./Jan.html" class="btn ">JANUARY-2025</a></li>
+    </ul>
+    </div>
+    <div id="map"></div>
+    
+</body>
+
+</html>

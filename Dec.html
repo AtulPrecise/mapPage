@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps Multiple Markers</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaNy1rcsCKtaC9mUgfgdHOpW5DrWOpBOQ&callback=initMap"
+        async defer></script>
+    <style>
+        #map {
+            height: 95vh !important;
+            width: 100%;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            padding-left: 0;
+            margin-bottom: 0;
+            float: right;
+            right: 0;
+            position: absolute;
+        }
+
+        .d-flex {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        ul li {
+            text-align: -webkit-match-parent;
+            unicode-bidi: isolate;
+            flex: 0 0 auto;
+            /* width: 20%; */
+            list-style: none;
+        }
+
+        ul li a {
+            text-decoration: none;
+        }
+
+        .btn {
+            border: 1px solid #000;
+            padding: 0.475rem 1.375rem;
+            margin: 10px;
+            border-radius: 5px;
+            color: #000;
+        }
+
+        .active {
+            background: #198754;
+            color: #fff;
+            border-color: #198754;
+        }
+    </style>
+    <script>
+
+        function initMap() {
+            // Define the map and center location
+            var map = new google.maps.Map(document.getElementById("map"), {});
+
+
+            // Define multiple marker locations
+            var locations = [
+                { lat: 29.5776835, lng: 74.3292026, title: "H8HH+5M3, Nai Mandi Rd, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 31-12-2024 13:42:45", txnReqID: "2112911519", rationCard: "105402200716", aadhaarCard: "xxxx-xxxx-2509", owner: "SAREKAM BAN", billNo: "18015241231134200" },
+                { lat: 29.5745933, lng: 74.3366425, title: "H8FP+QJJ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 31-12-2024 13:09:04", txnReqID: "2112896676", rationCard: "105403000775", aadhaarCard: "xxxx-xxxx-2063", owner: "FARUK HUSEIN", billNo: "18015241231130900" },
+                { lat: 29.576855, lng: 74.3448564, title: "gali no. 5 ward no. 30 roopnagar, Ward Number 32, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 31-12-2024 12:34:34", txnReqID: "2112880199", rationCard: "105403100155", aadhaarCard: "xxxx-xxxx-3417", owner: "RAJU", billNo: "18015241231123400" },
+                { lat: 29.5801055, lng: 74.3490408, title: "H8HX+XF7, Bhadrakali Temple Rd, Indira Colony, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 30-12-2024 19:39:15", txnReqID: "2112786290", rationCard: "105402200888", aadhaarCard: "xxxx-xxxx-0166", owner: "SHRAVAN", billNo: "18015241230193900" },
+                { lat: 29.5750721, lng: 74.3314646, title: "H8FJ+XGQ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 30-12-2024 17:31:29", txnReqID: "2112758826", rationCard: "105402200907", aadhaarCard: "xxxx-xxxx-9958", owner: "BABALU", billNo: "18015241230173100" },
+                { lat: 29.5751329, lng: 74.3309418, title: "H8FJ+XGQ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 30-12-2024 17:14:43", txnReqID: "2112753174", rationCard: "105402200520", aadhaarCard: "xxxx-xxxx-4853", owner: "ARATI", billNo: "18015241230171400" },
+                { lat: 29.576869, lng: 74.344855, title: "gali no. 5 ward no. 30 roopnagar, Ward Number 32, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 28-12-2024 17:50:38", txnReqID: "2112267038", rationCard: "200000728116", aadhaarCard: "xxxx-xxxx-3979", owner: "", billNo: "18015241228175000" },
+                { lat: 29.5785601, lng: 74.3451583, title: "H8HW+82C, Ward Number 32, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 27-12-2024 13:57:39", txnReqID: "2111910226", rationCard: "200004511900", aadhaarCard: "xxxx-xxxx-9581", owner: "RENU", billNo: "18015241227135700" },
+                { lat: 29.5786475, lng: 74.3462319, title: "H8HW+HHV, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 27-12-2024 12:35:07", txnReqID: "2111867088", rationCard: "105402000369", aadhaarCard: "xxxx-xxxx-5566", owner: "BHVAR KHAN", billNo: "18015241227123500" },
+                { lat: 29.5745224, lng: 74.3363796, title: "H8FP+QJJ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 26-12-2024 14:21:44", txnReqID: "2111662681", rationCard: "105403200505", aadhaarCard: "xxxx-xxxx-6424", owner: "MOHAMAD ASALAM", billNo: "18015241226142100" },
+                { lat: 29.5759119, lng: 74.3310016, title: "H8GJ+86G, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 23-12-2024 16:32:59", txnReqID: "2110800255", rationCard: "105402200828", aadhaarCard: "xxxx-xxxx-9843", owner: "BALLU", billNo: "18015241223163200" },
+                { lat: 29.575339, lng: 74.3298355, title: "H8GH+4QV Martyr Udam Singh Park, Railway Station Rd, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 22-12-2024 14:12:30", txnReqID: "2110396887", rationCard: "105402200674", aadhaarCard: "xxxx-xxxx-6055", owner: "VINOD KUMAR", billNo: "18015241222141200" },
+                { lat: 29.5780849, lng: 74.3462444, title: "NAAGAR KUNJ Makka musjid Gali no. 4/7, Ward Number 32, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 22-12-2024 13:58:39", txnReqID: "2110386688", rationCard: "105403001314", aadhaarCard: "xxxx-xxxx-9672", owner: "AMIN KHA", billNo: "18015241222135800" },
+                { lat: 29.5817466, lng: 74.3497596, title: "H9J2+786, Indira Colony, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 22-12-2024 13:08:12", txnReqID: "2110346802", rationCard: "105402200756", aadhaarCard: "xxxx-xxxx-1532", owner: "HANSARAJ", billNo: "18015241222130800" },
+                { lat: 29.5799282, lng: 74.3487881, title: "H8HX+XF7, Bhadrakali Temple Rd, Indira Colony, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 22-12-2024 09:56:57", txnReqID: "2110184599", rationCard: "105402801148", aadhaarCard: "xxxx-xxxx-8631", owner: "INDRAJ", billNo: "18015241222095600" },
+                { lat: 29.5723666, lng: 74.35096, title: "H9C2+WFQ, Sun City, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 22-12-2024 09:17:20", txnReqID: "2110169103", rationCard: "105403000093", aadhaarCard: "xxxx-xxxx-0118", owner: "RADHUVIR", billNo: "18015241222091700" },
+                { lat: 29.578008, lng: 74.3458239, title: "H8HW+592, Ward Number 32, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 19:20:39", txnReqID: "2110153894", rationCard: "105403001094", aadhaarCard: "xxxx-xxxx-8999", owner: "MOBIN BANO", billNo: "18015241221192000" },
+                { lat: 29.5754561, lng: 74.3300512, title: "H8GJ+86G, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 17:54:02", txnReqID: "2110146695", rationCard: "105402800486", aadhaarCard: "xxxx-xxxx-9878", owner: "RAJU DEVI", billNo: "18015241221175400" },
+                { lat: 29.5754602, lng: 74.3307683, title: "H8GJ+35W, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 17:35:06", txnReqID: "2110143550", rationCard: "105402200670", aadhaarCard: "xxxx-xxxx-3570", owner: "ANGURI DEVI", billNo: "18015241221173500" },
+                { lat: 29.5759124, lng: 74.3309501, title: "H8GJ+86G, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 17:21:36", txnReqID: "2110140477", rationCard: "105402200842", aadhaarCard: "xxxx-xxxx-4786", owner: "OMAPRAKASH", billNo: "18015241221172100" },
+                { lat: 29.5757061, lng: 74.3312755, title: "8, MDR89, Ggr, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 17:11:25", txnReqID: "2110137555", rationCard: "105402200866", aadhaarCard: "xxxx-xxxx-3536", owner: "JITU", billNo: "18015241221171100" },
+                { lat: 29.5760985, lng: 74.3314761, title: "H8GJ+GGQ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 17:05:42", txnReqID: "2110135726", rationCard: "105401800772", aadhaarCard: "xxxx-xxxx-8701", owner: "OM PRAKASH", billNo: "18015241221170500" },
+                { lat: 29.5759366, lng: 74.3310985, title: "8, MDR89, Ggr, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 17:02:57", txnReqID: "2110134722", rationCard: "105402200646", aadhaarCard: "xxxx-xxxx-3080", owner: "BASANTI", billNo: "18015241221170200" },
+                { lat: 29.5753179, lng: 74.3313405, title: "8, MDR89, Ggr, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 16:55:35", txnReqID: "2110132132", rationCard: "105402200882", aadhaarCard: "xxxx-xxxx-6275", owner: "SIMA RANI", billNo: "18015241221165500" },
+                { lat: 29.57246, lng: 74.3508655, title: "H9C2+WFQ, Sun City, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 16:31:14", txnReqID: "2110120412", rationCard: "105403000095", aadhaarCard: "xxxx-xxxx-0939", owner: "DHARM VIR", billNo: "18015241221163100" },
+                { lat: 29.5726702, lng: 74.3509075, title: "H9C2+WFQ, Sun City, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 16:22:52", txnReqID: "2110115629", rationCard: "105403000579", aadhaarCard: "xxxx-xxxx-1133", owner: "PAVANAKUMAR", billNo: "18015241221162200" },
+                { lat: 29.5726529, lng: 74.3509045, title: "H9C2+WFQ, Sun City, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 16:20:25", txnReqID: "2110114179", rationCard: "105403001290", aadhaarCard: "xxxx-xxxx-4311", owner: "PARVATI", billNo: "18015241221162000" },
+                { lat: 29.5779422, lng: 74.3301243, title: "H8HJ+35J, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 13:59:31", txnReqID: "2110009258", rationCard: "105402200815", aadhaarCard: "xxxx-xxxx-3396", owner: "JIVANI BANO", billNo: "18015241221135900" },
+                { lat: 29.5775986, lng: 74.3303762, title: "H8GJ+X4H, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 13:56:02", txnReqID: "2110006523", rationCard: "105402200812", aadhaarCard: "xxxx-xxxx-4013", owner: "LIYAKAT ALI", billNo: "18015241221135600" },
+                { lat: 29.5786072, lng: 74.3306572, title: "131, Main Mandi Road, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 13:48:51", txnReqID: "2110000968", rationCard: "105402900512", aadhaarCard: "xxxx-xxxx-6762", owner: "KISHOR SINH RAJAPUROHIT", billNo: "18015241221134800" },
+                { lat: 29.5757888, lng: 74.3340857, title: "127, near allahabad bank, Mukherjee Colony, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 13:33:48", txnReqID: "2109989131", rationCard: "105403100041", aadhaarCard: "xxxx-xxxx-0798", owner: "RINKAPAL", billNo: "18015241221133300" },
+                { lat: 29.5757177, lng: 74.3341071, title: "127, near allahabad bank, Mukherjee Colony, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 13:30:43", txnReqID: "2109986511", rationCard: "105403100039", aadhaarCard: "xxxx-xxxx-0905", owner: "RAJAKUMARA", billNo: "18015241221133000" },
+                { lat: 29.574602, lng: 74.3365583, title: "H8FP+QJJ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 12:56:56", txnReqID: "2109958422", rationCard: "200000244571", aadhaarCard: "xxxx-xxxx-0209", owner: "SHARDA DEVI", billNo: "18015241221125600" },
+                { lat: 29.5746216, lng: 74.3364958, title: "H8FP+QJJ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 11:45:07", txnReqID: "2109896505", rationCard: "6780100026", aadhaarCard: "xxxx-xxxx-8526", owner: "TEKACHAND", billNo: "18015241221114500" },
+                { lat: 29.5799058, lng: 74.3486391, title: "H8HX+XF7, Bhadrakali Temple Rd, Indira Colony, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 11:06:18", txnReqID: "2109864709", rationCard: "105403100149", aadhaarCard: "xxxx-xxxx-2543", owner: "MUSHTAK ALI", billNo: "18015241221110600" },
+                { lat: 29.5798404, lng: 74.3485498, title: "1, near FCI godown, Hanumangarh, Indira Colony, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 11:05:05", txnReqID: "2109863750", rationCard: "105403100565", aadhaarCard: "xxxx-xxxx-1222", owner: "NURAJAHA", billNo: "18015241221110500" },
+                { lat: 29.579871, lng: 74.3487611, title: "H8HX+XF7, Bhadrakali Temple Rd, Indira Colony, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 21-12-2024 11:03:25", txnReqID: "2109862560", rationCard: "105403100404", aadhaarCard: "xxxx-xxxx-3853", owner: "KASAM ALI", billNo: "18015241221110300" }
+            ];
+            var infowindow = new google.maps.InfoWindow();
+            var bounds = new google.maps.LatLngBounds();
+            // Loop through locations and add markers
+            locations.forEach(function (location) {
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: map,
+                    title: location.title
+                });
+                bounds.extend(marker.position);
+                marker.addListener("click", function () {
+                    var content = "<b>" + location.title + "</b><br>" + location.dateTime + "</b><br> Txn Id -- " + location.txnReqID + "</b><br>Ration Card -- " + location.rationCard + "</b><br>Aadhaar Card -- " + location.aadhaarCard + "</b><br>Owner Name -- " + location.owner + "</b><br>Bill No. -- " + location.billNo;
+
+                    infowindow.setContent(content);
+
+                    infowindow.open(map, marker);
+                });
+            });
+            map.fitBounds(bounds);
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="d-flex">
+        <h2>December 2024 locations of FPS 18015</h2>
+        <ul>
+            <li><a href="./index.html" class="btn">SEPTEMBER-2024</a></li>
+            <li><a href="./Dec.html" class="btn active">DECEMBER-2024</a></li>
+            <li><a href="./Jan.html" class="btn">JANUARY-2025</a></li>
+        </ul>
+    </div>
+    <div id="map"></div>
+ 
+</body>
+
+</html>

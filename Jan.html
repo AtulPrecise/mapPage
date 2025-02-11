@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps Multiple Markers</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaNy1rcsCKtaC9mUgfgdHOpW5DrWOpBOQ&callback=initMap"
+        async defer></script>
+    <style>
+        #map {
+            height: 95vh !important;
+            width: 100%;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            padding-left: 0;
+            margin-bottom: 0;
+            float: right;
+            right: 0;
+            position: absolute;
+        }
+
+        .d-flex {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        ul li {
+            text-align: -webkit-match-parent;
+            unicode-bidi: isolate;
+            flex: 0 0 auto;
+            /* width: 20%; */
+            list-style: none;
+        }
+
+        ul li a {
+            text-decoration: none;
+        }
+
+        .btn {
+            border: 1px solid #000;
+            padding: 0.475rem 1.375rem;
+            margin: 10px;
+            border-radius: 5px;
+            color: #000;
+        }
+
+        .active {
+            background: #198754;
+            color: #fff;
+            border-color: #198754;
+        }
+    </style>
+    <script>
+
+        function initMap() {
+            // Define the map and center location
+            var map = new google.maps.Map(document.getElementById("map"), {});
+
+
+            // Define multiple marker locations
+            var locations = [
+                { lat: 29.579934, lng: 74.3487282, title: "H8HX+XF7, Bhadrakali Temple Rd, Indira Colony, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 16-01-2025 13:22:18", txnReqID: "0", rationCard: "105402800655", aadhaarCard: "xxxx-xxxx-6413", owner: "MAHAVIR", billNo: "18015250116132200" },
+                { lat: 29.6370614, lng: 74.3307814, title: "J8PJ+P95, Hanumangarh, Rajasthan 335065, India", dateTime: "Date Time -- 13-01-2025 18:49:51", txnReqID: "2121551925", rationCard: "6443300009", aadhaarCard: "xxxx-xxxx-7120", owner: "", billNo: "18015250113184900" },
+                { lat: 29.576124, lng: 74.345471, title: "276, Gali Number 2, Ward Number 32, roop nagar, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 12-01-2025 11:50:00", txnReqID: "2120719494", rationCard: "105403001149", aadhaarCard: "xxxx-xxxx-7361", owner: "BALAKESH", billNo: "18015250112115000" },
+                { lat: 29.5762447, lng: 74.3454991, title: "276, Gali Number 2, Ward Number 32, roop nagar, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 12-01-2025 11:49:52", txnReqID: "2120717852", rationCard: "105403000512", aadhaarCard: "xxxx-xxxx-8474", owner: "ARIF KHAN", billNo: "18015250112114900" },
+                { lat: 29.5599635, lng: 74.3327978, title: "Rj 31Service station, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 12-01-2025 11:28:41", txnReqID: "2120681655", rationCard: "105900200373", aadhaarCard: "xxxx-xxxx-5625", owner: "ANGREJ NATH", billNo: "18015250112112800" },
+                { lat: 29.5597655, lng: 74.3319431, title: "H86J+5W5, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 12-01-2025 11:19:43", txnReqID: "2120667355", rationCard: "200002002291", aadhaarCard: "xxxx-xxxx-6592", owner: "MAHENDER NATH", billNo: "18015250112111900" },
+                { lat: 29.6371553, lng: 74.3308289, title: "J8PJ+P95, Hanumangarh, Rajasthan 335065, India", dateTime: "Date Time -- 10-01-2025 15:35:12", txnReqID: "2119903981", rationCard: "200004427665", aadhaarCard: "xxxx-xxxx-4515", owner: "RAMJAN", billNo: "18015250110153500" },
+                { lat: 29.5784349, lng: 74.3468919, title: "2, Roopnager, à¤¹à¤¨à¥à¤®à¤¾à¤¨à¤à¤¢à¤¼ à¤à¤¾à¤à¤¨, à¤°à¤¾à¤à¤¸à¥à¤¥à¤¾à¤¨ 335513, India", dateTime: "Date Time -- 10-01-2025 13:42:17", txnReqID: "2119772312", rationCard: "105402000340", aadhaarCard: "xxxx-xxxx-4174", owner: "SALIM", billNo: "18015250110134200" },
+                { lat: 29.5779123, lng: 74.3460851, title: "H8HW+592, Ward Number 32, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 10-01-2025 13:38:19", txnReqID: "2119767522", rationCard: "105403000748", aadhaarCard: "xxxx-xxxx-1616", owner: "BILLU KHAN", billNo: "18015250110133800" },
+                { lat: 29.5755766, lng: 74.3310493, title: "8, MDR89, Ggr, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 10-01-2025 12:47:49", txnReqID: "2119697249", rationCard: "105402200849", aadhaarCard: "xxxx-xxxx-6736", owner: "MADANALAL", billNo: "18015250110124700" },
+                { lat: 29.5753031, lng: 74.3312283, title: "H8FJ+XGQ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 10-01-2025 12:33:43", txnReqID: "2119674869", rationCard: "105402200905", aadhaarCard: "xxxx-xxxx-5772", owner: "RAM", billNo: "18015250110123300" },
+                { lat: 29.5750437, lng: 74.3309618, title: "", dateTime: "Date Time -- 09-01-2025 17:44:43", txnReqID: "2119384506", rationCard: "6772100018", aadhaarCard: "xxxx-xxxx-8265", owner: "MANAJIT SINH", billNo: "18015250109174400" },
+                { lat: 29.5743481, lng: 74.3365838, title: "Genral Market, Shiv Petrol Pump Ke Pichhe, Tibbi Rd, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 09-01-2025 11:53:37", txnReqID: "2118942946", rationCard: "105402900483", aadhaarCard: "xxxx-xxxx-8235", owner: "USHA", billNo: "18015250109115300" },
+                { lat: 29.5746032, lng: 74.3364726, title: "H8FP+QJJ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 09-01-2025 11:52:17", txnReqID: "2118940701", rationCard: "105402900343", aadhaarCard: "xxxx-xxxx-4015", owner: "RESHAMA DEVI", billNo: "18015250109115200" },
+                { lat: 29.5746849, lng: 74.3363136, title: "H8FP+QJJ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 09-01-2025 11:45:25", txnReqID: "2118926768", rationCard: "105403000775", aadhaarCard: "xxxx-xxxx-5307", owner: "FARUK HUSEIN", billNo: "18015250109114500" },
+                { lat: 29.5744117, lng: 74.3366096, title: "Genral Market, Shiv Petrol Pump Ke Pichhe, Tibbi Rd, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 09-01-2025 11:39:12", txnReqID: "2118914156", rationCard: "105403001316", aadhaarCard: "xxxx-xxxx-4713", owner: "AMRUTA DEV", billNo: "18015250109113900" },
+                { lat: 29.5756877, lng: 74.3305773, title: "H8GJ+86G, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 09-01-2025 11:32:15", txnReqID: "2118900884", rationCard: "105402200755", aadhaarCard: "xxxx-xxxx-1045", owner: "KRUSHNA DEV", billNo: "18015250109113200" },
+                { lat: 29.5779226, lng: 74.3300127, title: "no. 36, Zakir Hussain Park Rd, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 09-01-2025 11:19:38", txnReqID: "2118876456", rationCard: "105402200815", aadhaarCard: "xxxx-xxxx-3396", owner: "JIVANI BANO", billNo: "18015250109111900" },
+                { lat: 29.5779463, lng: 74.3303146, title: "H8HJ+65H JAKIR HUSSAIN PARAK, Dhan mandi road ke samne, Zakir Hussain Park, Nai Mandi Rd, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 09-01-2025 11:16:30", txnReqID: "2118870182", rationCard: "105402200812", aadhaarCard: "xxxx-xxxx-4013", owner: "LIYAKAT ALI", billNo: "18015250109111600" },
+                { lat: 29.5771868, lng: 74.3302892, title: "H8GJ+X4H, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 09-01-2025 11:03:01", txnReqID: "2118845132", rationCard: "105402200885", aadhaarCard: "xxxx-xxxx-0916", owner: "BANSHILAL", billNo: "18015250109110300" },
+                { lat: 29.5759314, lng: 74.3309375, title: "H8GJ+86G, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 09-01-2025 10:59:25", txnReqID: "2118838478", rationCard: "200000244512", aadhaarCard: "xxxx-xxxx-1508", owner: "MANOJ", billNo: "18015250109105900" },
+                { lat: 29.6370305, lng: 74.3308258, title: "", dateTime: "Date Time -- 08-01-2025 16:04:29", txnReqID: "2118590596", rationCard: "105403001314", aadhaarCard: "xxxx-xxxx-9672", owner: "AMIN KHA", billNo: "18015250108160400" },
+                { lat: 29.5774847, lng: 74.34123, title: "saini niwas , WARD NO.32 Sec. No.2, Premnagar, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 07-01-2025 13:28:44", txnReqID: "2117597421", rationCard: "105403200505", aadhaarCard: "xxxx-xxxx-1604", owner: "MOHAMAD ASALAM", billNo: "18015250107132800" },
+                { lat: 29.5746229, lng: 74.3363916, title: "H8FP+QJJ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 07-01-2025 12:23:10", txnReqID: "2117463838", rationCard: "811342742", aadhaarCard: "xxxx-xxxx-5291", owner: "Santosh", billNo: "18015250107122300" },
+                { lat: 29.5746285, lng: 74.3363827, title: "H8FP+QJJ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 07-01-2025 12:07:50", txnReqID: "2117428146", rationCard: "105402700697", aadhaarCard: "xxxx-xxxx-0249", owner: "GANGA RAM", billNo: "18015250107120700" },
+                { lat: 29.5746174, lng: 74.3365868, title: "H8FP+VMR, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 07-01-2025 11:53:10", txnReqID: "2117394059", rationCard: "105402200754", aadhaarCard: "xxxx-xxxx-7393", owner: "VIDHARATAN", billNo: "18015250107115300" },
+                { lat: 29.5743551, lng: 74.3365701, title: "Genral Market, Shiv Petrol Pump Ke Pichhe, Tibbi Rd, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 07-01-2025 11:41:34", txnReqID: "2117366435", rationCard: "200000002853", aadhaarCard: "xxxx-xxxx-6484", owner: "Arun", billNo: "18015250107114100" },
+                { lat: 29.5746182, lng: 74.3363924, title: "H8FP+QJJ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 07-01-2025 11:14:52", txnReqID: "2117305111", rationCard: "105403000772", aadhaarCard: "xxxx-xxxx-3741", owner: "MOHAMAD JAMIL", billNo: "18015250107111400" },
+                { lat: 29.5745004, lng: 74.3366923, title: "H8FP+QP2, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 07-01-2025 09:45:08", txnReqID: "2117165638", rationCard: "105403001201", aadhaarCard: "xxxx-xxxx-8358", owner: "SANTOSH DEVI", billNo: "18015250107094500" },
+                { lat: 29.5750747, lng: 74.3314073, title: "H8FJ+XGQ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 07-01-2025 09:24:45", txnReqID: "2117151227", rationCard: "105402200860", aadhaarCard: "xxxx-xxxx-7132", owner: "RAJAKUMAR", billNo: "18015250107092400" },
+                { lat: 29.559827, lng: 74.3323157, title: "H86J+5W5, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 07-01-2025 08:57:17", txnReqID: "2117137790", rationCard: "6816900413", aadhaarCard: "xxxx-xxxx-2821", owner: "MAHABUBANATH", billNo: "18015250107085700" },
+                { lat: 29.5598292, lng: 74.332316, title: "H86J+5W5, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 07-01-2025 08:52:26", txnReqID: "2117136019", rationCard: "6816900393", aadhaarCard: "xxxx-xxxx-2954", owner: "SIDHANATH", billNo: "18015250107085200" },
+                { lat: 29.6370143, lng: 74.3308712, title: "J8PJ+P95, Hanumangarh, Rajasthan 335065, India", dateTime: "Date Time -- 06-01-2025 19:17:28", txnReqID: "2117122262", rationCard: "6764602327", aadhaarCard: "xxxx-xxxx-2531", owner: "MIRA DEVI", billNo: "18015250106191700" },
+                { lat: 29.5800239, lng: 74.3433253, title: "", dateTime: "Date Time -- 06-01-2025 13:25:36", txnReqID: "2116784681", rationCard: "105403100041", aadhaarCard: "xxxx-xxxx-4159", owner: "RINKAPAL", billNo: "18015250106132500" },
+                { lat: 29.5780144, lng: 74.3322203, title: "H8HJ+5WW, Nai Mandi Rd, Mukherjee Colony, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 06-01-2025 13:10:24", txnReqID: "2116756869", rationCard: "105402900205", aadhaarCard: "xxxx-xxxx-0881", owner: "SATENDRA KUMAR", billNo: "18015250106131000" },
+                { lat: 29.5757874, lng: 74.3341422, title: "127, near allahabad bank, Mukherjee Colony, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 06-01-2025 13:02:29", txnReqID: "2116741557", rationCard: "105403100039", aadhaarCard: "xxxx-xxxx-0905", owner: "RAJAKUMARA", billNo: "18015250106130200" },
+                { lat: 29.5745954, lng: 74.3366435, title: "H8FP+QJJ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 06-01-2025 12:49:03", txnReqID: "2116713253", rationCard: "200000089918", aadhaarCard: "xxxx-xxxx-9194", owner: "salim khan", billNo: "18015250106124900" },
+                { lat: 29.5745799, lng: 74.3366533, title: "H8FP+QJJ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 06-01-2025 12:41:52", txnReqID: "2116697579", rationCard: "105403000148", aadhaarCard: "xxxx-xxxx-9102", owner: "HARAJIT SIH", billNo: "18015250106124100" },
+                { lat: 29.5745625, lng: 74.3365139, title: "H8FP+QJJ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 06-01-2025 12:28:31", txnReqID: "2116667934", rationCard: "200000062210", aadhaarCard: "xxxx-xxxx-3644", owner: "sharif khan", billNo: "18015250106122800" },
+                { lat: 29.5745387, lng: 74.3365383, title: "H8FP+QJJ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 06-01-2025 12:09:34", txnReqID: "2116623054", rationCard: "105401500002", aadhaarCard: "xxxx-xxxx-7754", owner: "IMARAN KHAN", billNo: "18015250106120900" },
+                { lat: 29.5785889, lng: 74.3461092, title: "H8HW+HHV, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 06-01-2025 11:39:48", txnReqID: "2116552184", rationCard: "105402000369", aadhaarCard: "xxxx-xxxx-5566", owner: "BHVAR KHAN", billNo: "18015250106113900" },
+                { lat: 29.5797752, lng: 74.3487499, title: "1, near FCI godown, Hanumangarh, Indira Colony, Rajasthan 335513, India", dateTime: "Date Time -- 06-01-2025 10:17:53", txnReqID: "2116386895", rationCard: "105403100404", aadhaarCard: "xxxx-xxxx-3853", owner: "KASAM ALI", billNo: "18015250106101700" },
+                { lat: 29.5798663, lng: 74.3489371, title: "H8HX+XF7, Bhadrakali Temple Rd, Indira Colony, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 06-01-2025 10:14:33", txnReqID: "2116382032", rationCard: "105403100565", aadhaarCard: "xxxx-xxxx-1222", owner: "NURAJAHA", billNo: "18015250106101400" },
+                { lat: 29.580036, lng: 74.3490365, title: "H8HX+XF7, Bhadrakali Temple Rd, Indira Colony, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 06-01-2025 10:13:18", txnReqID: "2116380499", rationCard: "105403100149", aadhaarCard: "xxxx-xxxx-2543", owner: "MUSHTAK ALI", billNo: "18015250106101300" },
+                { lat: 29.5784491, lng: 74.3459742, title: "Gali no 4/7 Roopnagar NAAGAR KUNJ, Ward Number 32, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 01-01-2025 20:35:18", txnReqID: "2113420149", rationCard: "105403100616", aadhaarCard: "xxxx-xxxx-4603", owner: "ASAGAR ALI", billNo: "18015250101203500" },
+                { lat: 29.5760057, lng: 74.3310031, title: "H8GJ+86G, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 01-01-2025 20:11:47", txnReqID: "2113419783", rationCard: "105401800772", aadhaarCard: "xxxx-xxxx-1167", owner: "OM PRAKASH", billNo: "18015250101201100" },
+                { lat: 29.5762208, lng: 74.3311035, title: "H8GJ+GGQ, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 01-01-2025 20:08:09", txnReqID: "2113419716", rationCard: "105402200802", aadhaarCard: "xxxx-xxxx-3778", owner: "SONU", billNo: "18015250101200800" },
+                { lat: 29.5759532, lng: 74.3310987, title: "8, MDR89, Ggr, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 01-01-2025 20:04:03", txnReqID: "2113419657", rationCard: "105402200646", aadhaarCard: "xxxx-xxxx-3080", owner: "BASANTI", billNo: "18015250101200400" },
+                { lat: 29.5759617, lng: 74.3309677, title: "H8GJ+86G, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 01-01-2025 20:02:40", txnReqID: "2113419628", rationCard: "105402200659", aadhaarCard: "xxxx-xxxx-2937", owner: "DHANASHYAM", billNo: "18015250101200200" },
+                { lat: 29.5758971, lng: 74.3308996, title: "H8GJ+86G, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 01-01-2025 19:47:48", txnReqID: "2113419341", rationCard: "105402200639", aadhaarCard: "xxxx-xxxx-6371", owner: "LAKSHMI DEVI", billNo: "18015250101194700" },
+                { lat: 29.5778413, lng: 74.3314038, title: "H8HJ+3JG, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 01-01-2025 19:39:36", txnReqID: "2113419149", rationCard: "105402900371", aadhaarCard: "xxxx-xxxx-7199", owner: "VINOD KUMAR", billNo: "18015250101193900" },
+                { lat: 29.5779484, lng: 74.3314914, title: "134, General market, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 01-01-2025 19:38:48", txnReqID: "2113419129", rationCard: "105402900381", aadhaarCard: "xxxx-xxxx-0302", owner: "PAVAN KUMAR", billNo: "18015250101193800" },
+                { lat: 29.5779483, lng: 74.330617, title: "H8HJ+683, Zakir Hussain Park Rd, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 01-01-2025 19:27:16", txnReqID: "2113418880", rationCard: "105402900374", aadhaarCard: "xxxx-xxxx-4414", owner: "JAYANARAYAN", billNo: "18015250101192700" },
+                { lat: 29.5820295, lng: 74.3416331, title: "Unnamed Road, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 01-01-2025 19:05:56", txnReqID: "2113418107", rationCard: "6779600328", aadhaarCard: "xxxx-xxxx-0642", owner: "HARANEK SINGH", billNo: "18015250101190500" },
+                { lat: 29.5819994, lng: 74.3416301, title: "Unnamed Road, Hanumangarh, Rajasthan 335513, India", dateTime: "Date Time -- 01-01-2025 19:00:36", txnReqID: "2113417890", rationCard: "105403100155", aadhaarCard: "xxxx-xxxx-5873", owner: "RAJU", billNo: "18015250101190000" },
+                { lat: 29.6368804, lng: 74.3309046, title: "J8PJ+P95, Hanumangarh, Rajasthan 335065, India", dateTime: "Date Time -- 01-01-2025 09:10:55", txnReqID: "2113116169", rationCard: "105402000424", aadhaarCard: "xxxx-xxxx-8887", owner: "SURENDRA KUMAR", billNo: "18015250101091000" }
+            ];
+            var infowindow = new google.maps.InfoWindow();
+            var bounds = new google.maps.LatLngBounds();
+            // Loop through locations and add markers
+            locations.forEach(function (location) {
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: map,
+                    title: location.title
+                });
+                bounds.extend(marker.position);
+                marker.addListener("click", function () {
+                    var content = "<b>" + location.title + "</b><br>" + location.dateTime + "</b><br> Txn Id -- " + location.txnReqID + "</b><br>Ration Card -- " + location.rationCard + "</b><br>Aadhaar Card -- " + location.aadhaarCard + "</b><br>Owner Name -- " + location.owner + "</b><br>Bill No. -- " + location.billNo;
+
+                    infowindow.setContent(content);
+
+                    infowindow.open(map, marker);
+                });
+            });
+            map.fitBounds(bounds);
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="d-flex">
+        <h2>January 2025 locations of FPS 18015</h2>
+        <ul>
+            <li><a href="./index.html" class="btn">SEPTEMBER-2024</a></li>
+            <li><a href="./Dec.html" class="btn">DECEMBER-2024</a></li>
+            <li><a href="./Jan.html" class="btn active">JANUARY-2025</a></li>
+        </ul>
+    </div>
+    <div id="map"></div>
+    
+</body>
+
+</html>

@@ -121,6 +121,9 @@
             });
             map.fitBounds(bounds);
         }
+        function openExcel() {
+            window.open("https://docs.google.com/spreadsheets/d/1w5E3eAMv54yfquFovK2JdExeUxREb7SU8wH_kNZxJ8U/edit?usp=sharing", "_blank");
+        }
     </script>
 
 </head>
@@ -132,12 +135,13 @@
             <li><a href="./index.html" class="btn">SEPTEMBER-2024</a></li>
             <li><a href="./Dec.html" class="btn active">DECEMBER-2024</a></li>
             <li><a href="./Jan.html" class="btn">JANUARY-2025</a></li>
-            <li><a href="./18015LocationRationtranMapingUpdated.xlsx" target="_blank" class="btn ">Download Excel</a></li>
+            <li><a onclick="openExcel()" class="btn ">Open Excel</a></li>
+            </li>
 
         </ul>
     </div>
     <div id="map"></div>
- 
+
 </body>
 
 </html>
